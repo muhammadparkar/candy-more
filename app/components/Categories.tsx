@@ -36,7 +36,7 @@ export function Categories() {
             <a
               key={name}
               href="#collection"
-              className={`group relative cursor-pointer overflow-hidden rounded-3xl ${bg} p-6 transition-transform duration-200 hover:-translate-y-1 lg:p-8`}
+              className={`group relative cursor-pointer overflow-hidden rounded-3xl ${bg} p-6 transition-transform duration-200 hover:-translate-y-1 active:scale-[0.98] lg:p-8`}
             >
               <Icon
                 weight="duotone"

@@ -96,7 +96,7 @@ export function Collection() {
               </div>
               <button
                 type="button"
-                className="mt-4 flex w-full cursor-pointer items-center justify-center rounded-full bg-cream px-4 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 group-hover:bg-pink group-hover:text-white"
+                className="mt-4 flex w-full cursor-pointer items-center justify-center rounded-full bg-cream px-4 py-2.5 text-sm font-semibold text-ink transition-[background-color,color,transform] duration-200 group-hover:bg-pink group-hover:text-white active:scale-[0.97]"
               >
                 Add to bag
               </button>

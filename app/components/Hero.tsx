@@ -12,7 +12,7 @@ export function Hero() {
             Same-day delivery in select cities
           </div>
 
-          <h1 className="mt-6 font-display text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[4.2rem]">
+          <h1 className="mt-6 font-display text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] 2xl:text-[4.2rem]">
             Sweetness,
             <br />
             <span className="relative inline-block">

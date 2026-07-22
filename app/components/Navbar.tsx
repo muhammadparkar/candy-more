@@ -26,7 +26,7 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <a
             href="#collection"
-            className="hidden cursor-pointer rounded-full border border-ink/10 px-4 py-2 text-sm font-medium text-ink transition-colors duration-200 hover:border-pink hover:text-pink sm:inline-flex"
+            className="hidden cursor-pointer rounded-full border border-ink/10 px-4 py-2 text-sm font-medium text-ink transition-[color,border-color,transform] duration-200 hover:border-pink hover:text-pink active:scale-[0.97] sm:inline-flex"
           >
             Track order
           </a>
