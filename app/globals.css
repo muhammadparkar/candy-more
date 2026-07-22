@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-pink: #ff6fae;
+  --color-pink-light: #ffb7d9;
+  --color-bubblegum: #ff85e5;
+  --color-yellow: #ffe7a8;
+  --color-yellow-light: #fff2cc;
+  --color-mint: #b9f2e6;
+  --color-cyan: #66ecff;
+  --color-violet: #d1c4e9;
+  --color-cream: #fffaf5;
+  --color-neutral: #f0f0f0;
+  --color-ink: #1c3a45;
+  --color-ink-soft: #3a5a63;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-unbounded);
+  --font-sans: var(--font-manrope);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes candy-float {
+  0%, 100% { transform: translateY(0) rotate(var(--float-rot, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--float-rot, 0deg)); }
+}
+
+.animate-candy-float {
+  animation: candy-float 5.5s ease-in-out infinite;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.text-balance {
+  text-wrap: balance;
 }
