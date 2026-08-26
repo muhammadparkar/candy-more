@@ -13,7 +13,7 @@ import {
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LollipopIcon, GummyDropIcon } from "../components/CandyDecor";
-import { DropletIcon, RoseGemIcon } from "../components/icons";
+import { DropletIcon } from "../components/icons";
 
 export const metadata = {
   title: "About Us | Candy More Floral",
@@ -147,7 +147,13 @@ export default function AboutPage() {
 
             <div className="relative z-10 max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold tracking-wide text-ink-soft shadow-sm">
-                <RoseGemIcon className="h-4 w-4" />
+                <Image
+                  src="/logo.png"
+                  alt="Candy & More"
+                  width={30}
+                  height={20}
+                  className="h-4 w-auto object-contain"
+                />
                 Our Story & Botanical Philosophy
               </div>
 

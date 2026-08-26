@@ -87,8 +87,19 @@ export function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-14 flex flex-col gap-3 border-t border-cream/10 pt-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-cream/10 pt-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Candy More Floral. All rights reserved.</p>
+          <p>
+            Designed &amp; Developed by{" "}
+            <a
+              href="https://qadmastechnologies.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-cream/80 hover:text-pink transition-colors underline-offset-4 hover:underline"
+            >
+              Qadmas Technologies
+            </a>
+          </p>
           <div className="flex gap-5">
             <Link href="/about" className="cursor-pointer hover:text-pink">
               Privacy

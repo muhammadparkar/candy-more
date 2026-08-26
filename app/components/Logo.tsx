@@ -1,27 +1,31 @@
+import Image from "next/image";
 import Link from "next/link";
-import { RoseGemIcon } from "./icons";
 
-export function Logo({ dark = false }: { dark?: boolean }) {
+export function Logo({
+  dark = false,
+  className = "",
+}: {
+  dark?: boolean;
+  className?: string;
+}) {
   return (
-    <Link href="/" className="flex items-center gap-2.5 group">
-      <RoseGemIcon className="h-9 w-9 shrink-0 transition-transform duration-200 group-hover:-rotate-6" />
-      <span className="flex flex-col leading-none">
-        <span
-          className={`font-display text-lg font-semibold tracking-tight ${
-            dark ? "text-cream" : "text-ink"
+    <Link
+      href="/"
+      className={`inline-flex items-center group transition-transform duration-200 hover:scale-[1.02] ${className}`}
+      aria-label="Candy & More Home"
+    >
+      <div className="relative flex items-center">
+        <Image
+          src="/logo.png"
+          alt="Candy & More"
+          width={280}
+          height={180}
+          priority
+          className={`h-11 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:-rotate-1 ${
+            dark ? "brightness-110 drop-shadow-[0_4px_16px_rgba(255,111,174,0.4)]" : ""
           }`}
-        >
-          Candy More
-        </span>
-        <span
-          className={`text-[10px] font-semibold tracking-[0.35em] ${
-            dark ? "text-mint" : "text-pink"
-          }`}
-        >
-          FLORAL
-        </span>
-      </span>
+        />
+      </div>
     </Link>
   );
 }
-

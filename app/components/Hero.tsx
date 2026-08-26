@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Sparkle, Truck } from "@phosphor-icons/react/dist/ssr";
 import { BonbonIcon, GummyDropIcon, LollipopIcon } from "./CandyDecor";
-import { RoseGemIcon } from "./icons";
 
 export function Hero() {
   return (
@@ -61,11 +60,14 @@ export function Hero() {
             className="absolute right-2 top-1/3 h-24 w-24 rounded-full bg-violet"
             aria-hidden="true"
           />
-          <div className="absolute -left-5 top-10 z-20 flex h-20 w-20 -rotate-6 flex-col items-center justify-center gap-0.5 rounded-full bg-white shadow-[0_20px_40px_-20px_rgba(28,58,69,0.4)] ring-1 ring-ink/5">
-            <RoseGemIcon className="h-7 w-7" />
-            <span className="text-[6px] font-semibold uppercase tracking-[0.15em] text-ink-soft">
-              Candy More
-            </span>
+          <div className="absolute -left-5 top-10 z-20 flex h-20 w-20 -rotate-6 items-center justify-center p-2 rounded-full bg-white shadow-[0_20px_40px_-20px_rgba(28,58,69,0.4)] ring-1 ring-ink/5">
+            <Image
+              src="/logo.png"
+              alt="Candy & More"
+              width={100}
+              height={70}
+              className="h-auto w-full object-contain"
+            />
           </div>
           <div className="absolute inset-8 overflow-hidden rounded-[3rem] shadow-[0_40px_80px_-30px_rgba(255,111,174,0.55)]">
             <Image
