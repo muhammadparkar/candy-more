@@ -1,8 +1,9 @@
+import Link from "next/link";
 import { RoseGemIcon } from "./icons";
 
 export function Logo({ dark = false }: { dark?: boolean }) {
   return (
-    <a href="#top" className="flex items-center gap-2.5 group">
+    <Link href="/" className="flex items-center gap-2.5 group">
       <RoseGemIcon className="h-9 w-9 shrink-0 transition-transform duration-200 group-hover:-rotate-6" />
       <span className="flex flex-col leading-none">
         <span
@@ -20,6 +21,7 @@ export function Logo({ dark = false }: { dark?: boolean }) {
           FLORAL
         </span>
       </span>
-    </a>
+    </Link>
   );
 }
+

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { DropletIcon } from "./icons";
 
 export function Story() {
@@ -30,20 +31,30 @@ export function Story() {
               building arrangements that feel considered: bold color, honest
               ingredients, nothing generic.
             </p>
-            <div className="mt-8 flex flex-wrap gap-8">
-              {[
-                ["12+", "years crafting"],
-                ["40+", "florists & chocolatiers"],
-                ["9", "cities delivered"],
-              ].map(([stat, label]) => (
-                <div key={label}>
-                  <p className="font-display text-2xl font-semibold text-cream">
-                    {stat}
-                  </p>
-                  <p className="text-xs text-cream/60">{label}</p>
-                </div>
-              ))}
-            </div>
+              <div className="mt-8 flex flex-wrap gap-8">
+                {[
+                  ["12+", "years crafting"],
+                  ["40+", "florists & chocolatiers"],
+                  ["9", "cities delivered"],
+                ].map(([stat, label]) => (
+                  <div key={label}>
+                    <p className="font-display text-2xl font-semibold text-cream">
+                      {stat}
+                    </p>
+                    <p className="text-xs text-cream/60">{label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-cream/10">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-pink hover:text-white transition-colors"
+                >
+                  <span>Read our full origin story & meet the team</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
           </div>
         </div>
       </div>

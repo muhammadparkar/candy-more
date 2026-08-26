@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Sparkle, Truck } from "@phosphor-icons/react/dist/ssr";
 import { BonbonIcon, GummyDropIcon, LollipopIcon } from "./CandyDecor";
 import { RoseGemIcon } from "./icons";
@@ -32,18 +33,18 @@ export function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href="#collection"
+            <Link
+              href="/products"
               className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-cream shadow-[0_16px_30px_-14px_rgba(28,58,69,0.6)] transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
             >
               Shop now
-            </a>
-            <a
-              href="#story"
+            </Link>
+            <Link
+              href="/about"
               className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-ink/15 px-7 py-3.5 text-sm font-semibold text-ink transition-colors duration-200 hover:border-pink hover:text-pink"
             >
               Our story
-            </a>
+            </Link>
           </div>
         </div>
 

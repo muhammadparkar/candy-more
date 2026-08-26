@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 const products = [
@@ -55,12 +56,12 @@ export function Collection() {
               Bestsellers, made to be given.
             </h2>
           </div>
-          <a
-            href="#newsletter"
+          <Link
+            href="/products"
             className="cursor-pointer text-sm font-semibold text-ink-soft underline-offset-4 transition-colors duration-200 hover:text-pink hover:underline"
           >
             View all 120+ arrangements
-          </a>
+          </Link>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">

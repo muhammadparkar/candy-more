@@ -1,26 +1,31 @@
+import Link from "next/link";
 import { ArrowRight, Basket, Cookie, Flower, Gift } from "@phosphor-icons/react/dist/ssr";
 
 const categories = [
   {
     name: "Chocolates",
+    slug: "chocolates",
     desc: "Small-batch truffles & bars",
     icon: Cookie,
     bg: "bg-pink-light",
   },
   {
     name: "Flowers",
+    slug: "flowers",
     desc: "Hand-tied seasonal blooms",
     icon: Flower,
     bg: "bg-mint",
   },
   {
     name: "Gift Boxes",
+    slug: "gift-boxes",
     desc: "Curated candy + floral sets",
     icon: Gift,
     bg: "bg-yellow",
   },
   {
     name: "Hampers",
+    slug: "hampers",
     desc: "Big-occasion baskets",
     icon: Basket,
     bg: "bg-violet",
@@ -32,10 +37,10 @@ export function Categories() {
     <section className="px-4 py-4 sm:px-6 lg:px-10 xl:px-16">
       <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4 lg:gap-6">
-          {categories.map(({ name, desc, icon: Icon, bg }) => (
-            <a
+          {categories.map(({ name, slug, desc, icon: Icon, bg }) => (
+            <Link
               key={name}
-              href="#collection"
+              href={`/products?category=${slug}`}
               className={`group relative cursor-pointer overflow-hidden rounded-3xl ${bg} p-6 transition-transform duration-200 hover:-translate-y-1 active:scale-[0.98] lg:p-8`}
             >
               <Icon
@@ -53,7 +58,7 @@ export function Categories() {
                   className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
                 />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
