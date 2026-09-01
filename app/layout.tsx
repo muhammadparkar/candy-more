@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Unbounded, Manrope } from "next/font/google";
 import "./globals.css";
 import { FloatingActions } from "./components/FloatingActions";
+import { QuoteProvider } from "./components/QuoteModal";
 
 const unbounded = Unbounded({
   variable: "--font-unbounded",
@@ -39,8 +40,10 @@ export default function RootLayout({
       className={`${unbounded.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
-        {children}
-        <FloatingActions />
+        <QuoteProvider>
+          {children}
+          <FloatingActions />
+        </QuoteProvider>
       </body>
     </html>
   );

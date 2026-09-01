@@ -22,13 +22,15 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { PRODUCTS, Product } from "../data/products";
 import { LollipopIcon, BonbonIcon } from "../components/CandyDecor";
+import { ProductDetailModal } from "../components/ProductDetailModal";
+import { useQuote } from "../components/QuoteModal";
 
 const CATEGORIES = [
   { id: "all", label: "All Items" },
+  { id: "flowers", label: "Flowers" },
+  { id: "plants", label: "Plants" },
   { id: "chocolates", label: "Chocolates" },
-  { id: "flowers", label: "Fresh Flowers" },
-  { id: "gift-boxes", label: "Gift Boxes" },
-  { id: "hampers", label: "Grand Hampers" },
+  { id: "hampers", label: "Home Decors & Special Events" },
 ];
 
 const DIETARY_FILTERS = [
@@ -44,19 +46,12 @@ function ProductsCatalog() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "all";
 
+  const { open: openQuote } = useQuote();
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "rating">("featured");
+  const [sortBy, setSortBy] = useState<"featured" | "rating">("featured");
   const [activeDietaryFilters, setActiveDietaryFilters] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [modalActivePhoto, setModalActivePhoto] = useState<string>("");
-  const [modalQuantity, setModalQuantity] = useState(1);
-  const [modalRibbon, setModalRibbon] = useState("Bubblegum Pink");
-  const [modalCardNote, setModalCardNote] = useState("");
-  const [cartToast, setCartToast] = useState<{ show: boolean; message: string }>({
-    show: false,
-    message: "",
-  });
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
@@ -70,25 +65,7 @@ function ProductsCatalog() {
     );
   };
 
-  const openProductModal = (product: Product) => {
-    setSelectedProduct(product);
-    setModalActivePhoto(product.photo);
-    setModalQuantity(1);
-    setModalCardNote("");
-  };
-
-  const handleAddToCart = (product: Product, quantity = 1) => {
-    setCartToast({
-      show: true,
-      message: `Added ${quantity}x "${product.name}" to your bag! 🍬🌸`,
-    });
-    setTimeout(() => {
-      setCartToast({ show: false, message: "" });
-    }, 3500);
-    if (selectedProduct) {
-      setSelectedProduct(null);
-    }
-  };
+  const openProductModal = (product: Product) => setSelectedProduct(product);
 
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((item) => {
@@ -117,8 +94,6 @@ function ProductsCatalog() {
       }
       return true;
     }).sort((a, b) => {
-      if (sortBy === "price-asc") return a.price - b.price;
-      if (sortBy === "price-desc") return b.price - a.price;
       if (sortBy === "rating") return b.rating - a.rating;
       return 0; // "featured" maintains default curated order
     });
@@ -127,16 +102,6 @@ function ProductsCatalog() {
   return (
     <div className="min-h-screen flex flex-col bg-cream text-ink">
       <Navbar />
-
-      {/* Notification Toast */}
-      {cartToast.show && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-ink px-5 py-3.5 text-sm font-semibold text-cream shadow-2xl animate-in fade-in slide-in-from-bottom-5 duration-200">
-          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-pink text-white">
-            <Check weight="bold" className="h-4 w-4" />
-          </div>
-          <span>{cartToast.message}</span>
-        </div>
-      )}
 
       {/* Header Banner */}
       <section className="relative overflow-hidden px-4 pb-12 pt-10 sm:px-6 lg:px-10 xl:px-16">
@@ -205,19 +170,11 @@ function ProductsCatalog() {
                   <select
                     value={sortBy}
                     onChange={(e) =>
-                      setSortBy(
-                        e.target.value as
-                          | "featured"
-                          | "price-asc"
-                          | "price-desc"
-                          | "rating"
-                      )
+                      setSortBy(e.target.value as "featured" | "rating")
                     }
                     className="bg-transparent font-medium text-ink focus:outline-none cursor-pointer"
                   >
                     <option value="featured">Featured Curations</option>
-                    <option value="price-asc">Price: Low to High</option>
-                    <option value="price-desc">Price: High to Low</option>
                     <option value="rating">Highest Rated</option>
                   </select>
                 </div>
@@ -383,24 +340,12 @@ function ProductsCatalog() {
                       </div>
                     </div>
 
-                    {/* Price & Actions */}
+                    {/* Actions */}
                     <div className="mt-5 pt-3 border-t border-ink/5 flex flex-col gap-3">
-                      <div className="flex items-baseline justify-between">
-                        <div className="flex items-baseline gap-2">
-                          <span className="font-display text-lg font-bold text-ink">
-                            ${product.price}
-                          </span>
-                          {product.originalPrice && (
-                            <span className="text-xs text-ink-soft/60 line-through">
-                              ${product.originalPrice}
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-[11px] font-medium text-pink flex items-center gap-1">
-                          <Truck weight="duotone" className="h-3.5 w-3.5" />
-                          Same day
-                        </span>
-                      </div>
+                      <span className="text-[11px] font-medium text-pink flex items-center gap-1">
+                        <Truck weight="duotone" className="h-3.5 w-3.5" />
+                        Same day delivery available
+                      </span>
 
                       <div className="grid grid-cols-2 gap-2">
                         <button
@@ -412,11 +357,11 @@ function ProductsCatalog() {
                         </button>
                         <button
                           type="button"
-                          onClick={() => handleAddToCart(product, 1)}
+                          onClick={() => openQuote(product.name)}
                           className="flex items-center justify-center gap-1 rounded-full bg-cream py-2 text-xs font-semibold text-ink transition-all group-hover:bg-pink group-hover:text-white active:scale-95 cursor-pointer shadow-sm"
                         >
                           <ShoppingBag weight="bold" className="h-3.5 w-3.5" />
-                          Add
+                          Get a quote
                         </button>
                       </div>
                     </div>
@@ -470,201 +415,11 @@ function ProductsCatalog() {
         </div>
       </main>
 
-      {/* Product Detail Modal */}
       {selectedProduct && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/60 p-4 backdrop-blur-sm animate-in fade-in duration-200"
-          onClick={() => setSelectedProduct(null)}
-        >
-          <div
-            className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] bg-white p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={() => setSelectedProduct(null)}
-              className="absolute right-5 top-5 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-cream text-ink hover:bg-pink hover:text-white transition-colors"
-            >
-              <X weight="bold" className="h-5 w-5" />
-            </button>
-
-            <div className="grid gap-8 md:grid-cols-2">
-              {/* Photo View */}
-              <div>
-                <div className="relative aspect-square overflow-hidden rounded-2xl bg-cream">
-                  {selectedProduct.badge && (
-                    <span className="absolute left-3 top-3 z-10 rounded-full bg-ink px-3 py-1 text-[11px] font-semibold text-cream">
-                      {selectedProduct.badge}
-                    </span>
-                  )}
-                  <Image
-                    src={`https://images.unsplash.com/photo-${modalActivePhoto}?auto=format&fit=crop&w=800&h=800&q=80`}
-                    alt={selectedProduct.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                {/* Additional Thumbnails */}
-                {selectedProduct.additionalPhotos && selectedProduct.additionalPhotos.length > 0 && (
-                  <div className="mt-3 flex gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setModalActivePhoto(selectedProduct.photo)}
-                      className={`relative h-14 w-14 overflow-hidden rounded-xl border-2 transition-all ${
-                        modalActivePhoto === selectedProduct.photo ? "border-pink scale-105" : "border-transparent opacity-70"
-                      }`}
-                    >
-                      <Image
-                        src={`https://images.unsplash.com/photo-${selectedProduct.photo}?auto=format&fit=crop&w=150&h=150&q=80`}
-                        alt="Thumbnail"
-                        fill
-                        className="object-cover"
-                      />
-                    </button>
-                    {selectedProduct.additionalPhotos.map((photoId) => (
-                      <button
-                        key={photoId}
-                        type="button"
-                        onClick={() => setModalActivePhoto(photoId)}
-                        className={`relative h-14 w-14 overflow-hidden rounded-xl border-2 transition-all ${
-                          modalActivePhoto === photoId ? "border-pink scale-105" : "border-transparent opacity-70"
-                        }`}
-                      >
-                        <Image
-                          src={`https://images.unsplash.com/photo-${photoId}?auto=format&fit=crop&w=150&h=150&q=80`}
-                          alt="Thumbnail"
-                          fill
-                          className="object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Product Info & Configuration */}
-              <div className="flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-pink-light/40 px-3 py-0.5 text-xs font-semibold text-ink">
-                      {selectedProduct.category}
-                    </span>
-                    <div className="flex items-center gap-1 text-xs font-semibold text-ink">
-                      <Star weight="fill" className="h-3.5 w-3.5 text-yellow" />
-                      <span>{selectedProduct.rating}</span>
-                      <span className="text-ink-soft/60">({selectedProduct.reviewsCount} reviews)</span>
-                    </div>
-                  </div>
-
-                  <h2 className="mt-2 font-display text-2xl sm:text-3xl font-bold text-ink">
-                    {selectedProduct.name}
-                  </h2>
-
-                  <div className="mt-2 flex items-baseline gap-3">
-                    <span className="font-display text-2xl font-bold text-ink">
-                      ${selectedProduct.price}
-                    </span>
-                    {selectedProduct.originalPrice && (
-                      <span className="text-sm text-ink-soft line-through">
-                        ${selectedProduct.originalPrice}
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="mt-4 text-sm leading-relaxed text-ink-soft">
-                    {selectedProduct.description}
-                  </p>
-
-                  {/* Highlights list */}
-                  <div className="mt-4 space-y-1.5 border-t border-b border-ink/10 py-3 text-xs text-ink-soft">
-                    {selectedProduct.details.map((detail, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <Check weight="bold" className="h-3.5 w-3.5 text-pink shrink-0" />
-                        <span>{detail}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <p className="mt-3 text-xs italic text-ink-soft/80">
-                    {selectedProduct.notes}
-                  </p>
-
-                  {/* Ribbon choice */}
-                  <div className="mt-4">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
-                      Complimentary Silk Ribbon:
-                    </label>
-                    <div className="mt-2 flex gap-2">
-                      {["Bubblegum Pink", "Matcha Mint", "Classic Cream"].map((color) => (
-                        <button
-                          key={color}
-                          type="button"
-                          onClick={() => setModalRibbon(color)}
-                          className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
-                            modalRibbon === color
-                              ? "bg-ink text-cream"
-                              : "bg-cream border border-ink/10 text-ink hover:border-pink"
-                          }`}
-                        >
-                          {color}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Handwritten Card Note */}
-                  <div className="mt-4">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
-                      Wax-Sealed Card Message (Optional):
-                    </label>
-                    <input
-                      type="text"
-                      maxLength={140}
-                      placeholder="e.g. Happy Birthday Maya! Love, Alex"
-                      value={modalCardNote}
-                      onChange={(e) => setModalCardNote(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-ink/10 bg-cream/60 px-3.5 py-2 text-xs text-ink placeholder:text-ink-soft/50 focus:border-pink focus:outline-none"
-                    />
-                  </div>
-                </div>
-
-                {/* Stepper & Add Button */}
-                <div className="mt-6 pt-4 border-t border-ink/10 flex items-center gap-4">
-                  <div className="flex items-center rounded-full border border-ink/15 bg-cream px-3 py-1.5">
-                    <button
-                      type="button"
-                      onClick={() => setModalQuantity(Math.max(1, modalQuantity - 1))}
-                      className="text-sm font-bold text-ink hover:text-pink px-2"
-                    >
-                      -
-                    </button>
-                    <span className="font-display font-semibold text-sm px-2 text-ink">
-                      {modalQuantity}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setModalQuantity(modalQuantity + 1)}
-                      className="text-sm font-bold text-ink hover:text-pink px-2"
-                    >
-                      +
-                    </button>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => handleAddToCart(selectedProduct, modalQuantity)}
-                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-pink py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-[1.02] active:scale-95 cursor-pointer"
-                  >
-                    <ShoppingBag weight="bold" className="h-4 w-4" />
-                    <span>Add to Bag (${selectedProduct.price * modalQuantity})</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProductDetailModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
       )}
 
       <Footer />

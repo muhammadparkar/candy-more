@@ -8,18 +8,19 @@ import {
   EnvelopeSimple,
   MapPin,
   Clock,
-  ChatCircleDots,
   CheckCircle,
   CaretDown,
   Sparkle,
   Truck,
   PaperPlaneRight,
   ArrowRight,
+  ArrowSquareOut,
   ShieldCheck,
 } from "@phosphor-icons/react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LollipopIcon, BonbonIcon } from "../components/CandyDecor";
+import { CustomDatePicker } from "../components/CustomDatePicker";
 
 const INQUIRY_TYPES = [
   { id: "general", label: "General & Order Support" },
@@ -70,6 +71,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState("");
+  const [lastMailtoUrl, setLastMailtoUrl] = useState("");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
@@ -108,17 +110,44 @@ export default function ContactPage() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Simulate server dispatch
-    setTimeout(() => {
-      setReferenceId(`CMF-${Math.floor(10000 + Math.random() * 90000)}`);
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 900);
+
+    const categoryObj = INQUIRY_TYPES.find((t) => t.id === inquiryType);
+    const categoryLabel = categoryObj ? categoryObj.label : "General Inquiry";
+    const recipient = "hello@candymoreflowers.com";
+
+    const subject = `Inquiry [${categoryLabel}]: ${formData.name.trim()}`;
+
+    let bodyText = `Hi Candy & More Team,\n\nI am submitting an inquiry with the following details:\n\n`;
+    bodyText += `• Inquiry Category: ${categoryLabel}\n`;
+    bodyText += `• Full Name: ${formData.name.trim()}\n`;
+    bodyText += `• Email: ${formData.email.trim()}\n`;
+    if (formData.phone.trim()) {
+      bodyText += `• Phone: ${formData.phone.trim()}\n`;
+    }
+    if (formData.date) {
+      bodyText += `• Target Date / Event Date: ${formData.date}\n`;
+    }
+    if (formData.quantity.trim()) {
+      bodyText += `• Estimated Units / Budget: ${formData.quantity.trim()}\n`;
+    }
+    bodyText += `\nMessage & Special Requests:\n${formData.message.trim()}\n\n`;
+    bodyText += `Best regards,\n${formData.name.trim()}`;
+
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+    setLastMailtoUrl(mailtoUrl);
+
+    // Trigger default email app
+    window.location.href = mailtoUrl;
+
+    setReferenceId(`CMF-${Math.floor(10000 + Math.random() * 90000)}`);
+    setIsSubmitting(false);
+    setIsSubmitted(true);
   };
 
   const resetForm = () => {
     setIsSubmitted(false);
     setReferenceId("");
+    setLastMailtoUrl("");
     setFormData({
       name: "",
       email: "",
@@ -170,30 +199,43 @@ export default function ContactPage() {
             {/* Contact / Inquiry Form Card */}
             <div className="rounded-[2.5rem] border border-ink/5 bg-white p-6 sm:p-10 lg:p-12 shadow-[0_20px_50px_-25px_rgba(28,58,69,0.2)]">
               {isSubmitted ? (
-                <div className="text-center py-12 animate-in zoom-in-95 duration-200">
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-mint/40 text-ink mb-6">
+                <div className="text-center py-10 animate-in zoom-in-95 duration-200">
+                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-mint/40 text-ink mb-5">
                     <CheckCircle weight="fill" className="h-12 w-12 text-pink" />
                   </div>
                   <h3 className="font-display text-3xl font-bold text-ink">
-                    Message Received!
+                    Opening Your Email Client
                   </h3>
                   <p className="mt-3 max-w-md mx-auto text-sm text-ink-soft leading-relaxed">
-                    Thank you, <span className="font-semibold text-ink">{formData.name}</span>. Our concierge team has received your inquiry and will reply to <span className="font-semibold text-ink">{formData.email}</span> within 2 hours.
+                    Thank you, <span className="font-semibold text-ink">{formData.name}</span>. Your default email app (Gmail, Apple Mail, Outlook) has been opened with your inquiry details pre-filled. Simply review and click <strong className="text-ink">Send</strong>!
                   </p>
                   <div className="mt-4 inline-block rounded-full bg-cream px-4 py-1.5 text-xs font-semibold text-ink-soft border border-ink/10">
                     Reference ID: {referenceId}
                   </div>
-                  <div className="mt-8 flex justify-center gap-4">
+
+                  {lastMailtoUrl && (
+                    <div className="mt-6 max-w-xs mx-auto">
+                      <a
+                        href={lastMailtoUrl}
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-pink py-3 text-sm font-semibold text-white shadow-md hover:scale-[1.02] active:scale-95 transition-transform"
+                      >
+                        <span>Re-open in Email App</span>
+                        <ArrowSquareOut weight="bold" className="h-4 w-4" />
+                      </a>
+                    </div>
+                  )}
+
+                  <div className="mt-6 flex flex-wrap justify-center gap-3">
                     <button
                       type="button"
                       onClick={resetForm}
-                      className="rounded-full border border-ink/15 px-6 py-2.5 text-xs font-semibold text-ink hover:border-pink hover:text-pink transition-colors"
+                      className="rounded-full border border-ink/15 px-6 py-2.5 text-xs font-semibold text-ink hover:border-pink hover:text-pink transition-colors cursor-pointer"
                     >
                       Send Another Message
                     </button>
                     <Link
                       href="/products"
-                      className="inline-flex items-center gap-1.5 rounded-full bg-pink px-6 py-2.5 text-xs font-semibold text-white shadow-md hover:scale-105 transition-transform"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-ink/15 bg-white px-6 py-2.5 text-xs font-semibold text-ink hover:border-pink hover:text-pink shadow-sm transition-all"
                     >
                       Browse Products
                       <ArrowRight weight="bold" className="h-3.5 w-3.5" />
@@ -292,7 +334,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="+1 (555) 019-2834"
+                        placeholder="+974 7076 8555"
                         className="w-full rounded-2xl border border-ink/10 bg-cream/50 px-4 py-3 text-sm text-ink placeholder:text-ink-soft/40 focus:bg-white focus:border-pink focus:outline-none focus:ring-2 focus:ring-pink/20 transition-all"
                       />
                     </div>
@@ -301,12 +343,10 @@ export default function ContactPage() {
                       <label className="block text-xs font-bold uppercase tracking-wider text-ink-soft mb-1">
                         Target Date / Event Date
                       </label>
-                      <input
-                        type="date"
-                        name="date"
+                      <CustomDatePicker
                         value={formData.date}
-                        onChange={handleInputChange}
-                        className="w-full rounded-2xl border border-ink/10 bg-cream/50 px-4 py-3 text-sm text-ink focus:bg-white focus:border-pink focus:outline-none focus:ring-2 focus:ring-pink/20 transition-all"
+                        onChange={(val) => setFormData((prev) => ({ ...prev, date: val }))}
+                        placeholder="Select target date"
                       />
                     </div>
                   </div>
@@ -382,41 +422,43 @@ export default function ContactPage() {
 
                 <div className="mt-6 space-y-4">
                   <a
-                    href="tel:+18005552263"
+                    href="tel:+97470768555"
                     className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 transition-colors hover:bg-white/15"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-pink text-white">
                       <Phone weight="bold" className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-cream/60 font-semibold">Phone & WhatsApp</p>
-                      <p className="text-sm font-bold text-cream">+1 (800) 555-CANDY</p>
+                      <p className="text-xs text-cream/60 font-semibold">Call us</p>
+                      <p className="text-sm font-bold text-cream">+974 7076 8555</p>
                     </div>
                   </a>
 
                   <a
-                    href="mailto:concierge@candymorefloral.com"
+                    href="https://wa.me/97431550554"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 transition-colors hover:bg-white/15"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-mint text-ink">
+                      <Phone weight="bold" className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-cream/60 font-semibold">WhatsApp</p>
+                      <p className="text-sm font-bold text-cream">+974 3155 0554</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="mailto:hello@candymoreflowers.com"
                     className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 transition-colors hover:bg-white/15"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-mint text-ink">
                       <EnvelopeSimple weight="bold" className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-cream/60 font-semibold">General Concierge</p>
-                      <p className="text-sm font-bold text-cream">concierge@candymorefloral.com</p>
-                    </div>
-                  </a>
-
-                  <a
-                    href="mailto:events@candymorefloral.com"
-                    className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 transition-colors hover:bg-white/15"
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-yellow text-ink">
-                      <ChatCircleDots weight="bold" className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-cream/60 font-semibold">Events & Corporate</p>
-                      <p className="text-sm font-bold text-cream">events@candymorefloral.com</p>
+                      <p className="text-xs text-cream/60 font-semibold">Email</p>
+                      <p className="text-sm font-bold text-cream">hello@candymoreflowers.com</p>
                     </div>
                   </a>
                 </div>

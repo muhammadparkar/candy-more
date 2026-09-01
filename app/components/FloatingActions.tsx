@@ -78,7 +78,7 @@ export function FloatingActions() {
 
       {/* WhatsApp Floating Chat Button */}
       <a
-        href="https://wa.me/18005552263?text=Hi%20Candy%20%26%20More%2C%20I%27d%20like%20to%20inquire%20about%20your%20confections%20and%20floral%20arrangements!"
+        href="https://wa.me/97431550554?text=Hi%20Candy%20%26%20More%2C%20I%27d%20like%20to%20inquire%20about%20your%20confections%20and%20floral%20arrangements!"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Candy & More on WhatsApp"

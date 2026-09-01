@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { InstagramLogo, PinterestLogo, TiktokLogo } from "@phosphor-icons/react/dist/ssr";
+import { InstagramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Logo } from "./Logo";
 
 const columns = [
@@ -7,10 +7,10 @@ const columns = [
     title: "Shop",
     links: [
       { label: "All Products", href: "/products" },
-      { label: "Chocolates", href: "/products?category=chocolates" },
       { label: "Flowers", href: "/products?category=flowers" },
-      { label: "Gift Boxes", href: "/products?category=gift-boxes" },
-      { label: "Grand Hampers", href: "/products?category=hampers" },
+      { label: "Plants", href: "/products?category=plants" },
+      { label: "Chocolates", href: "/products?category=chocolates" },
+      { label: "Home Decors & Special Events", href: "/products?category=hampers" },
     ],
   },
   {
@@ -34,9 +34,8 @@ const columns = [
 ];
 
 const socials = [
-  { Icon: InstagramLogo, label: "Instagram", href: "https://instagram.com" },
-  { Icon: PinterestLogo, label: "Pinterest", href: "https://pinterest.com" },
-  { Icon: TiktokLogo, label: "TikTok", href: "https://tiktok.com" },
+  { Icon: InstagramLogo, label: "Instagram", href: "https://www.instagram.com/candyandmorefloral" },
+  { Icon: WhatsappLogo, label: "WhatsApp", href: "https://wa.me/97431550554" },
 ];
 
 export function Footer() {
@@ -47,8 +46,8 @@ export function Footer() {
           <div>
             <Logo dark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/65">
-              Indulgent artisan chocolates, hand-tied florals and bespoke gifts, arranged
-              like art and delivered same day.
+              Hand-tied blooms, potted plants, artisan chocolates and styling for homes
+              and special events, arranged like art and delivered same day.
             </p>
             <div className="mt-6 flex gap-3">
               {socials.map(({ Icon, label, href }) => (
@@ -101,11 +100,11 @@ export function Footer() {
             </a>
           </p>
           <div className="flex gap-5">
-            <Link href="/about" className="cursor-pointer hover:text-pink">
-              Privacy
+            <Link href="/privacy" className="cursor-pointer hover:text-pink">
+              Privacy Policy
             </Link>
-            <Link href="/contact" className="cursor-pointer hover:text-pink">
-              Terms & Conditions
+            <Link href="/terms" className="cursor-pointer hover:text-pink">
+              Terms of Service
             </Link>
           </div>
         </div>

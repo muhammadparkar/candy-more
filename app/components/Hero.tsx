@@ -27,8 +27,8 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-soft">
-            Indulgent chocolates, hand-tied blooms and avant-garde gift boxes,
-            arranged like art and delivered same day.
+            Hand-tied blooms, potted plants, indulgent chocolates and styling for
+            your home and special events, arranged like art and delivered same day.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
