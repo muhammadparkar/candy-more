@@ -71,8 +71,8 @@ export function Hero() {
           </div>
           <div className="absolute inset-8 overflow-hidden rounded-[3rem] shadow-[0_40px_80px_-30px_rgba(255,111,174,0.55)]">
             <Image
-              src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&h=900&q=80"
-              alt="Close-up of hand-tied pink garden roses"
+              src="/images/IMG_2111.JPG"
+              alt="Pink rose bouquet, potted plant and a box of chocolates on a dresser"
               fill
               priority
               sizes="(min-width: 1024px) 32rem, 90vw"

@@ -7,12 +7,12 @@ export function Story() {
     <section id="story" className="px-4 py-6 sm:px-6 lg:px-10 xl:px-16">
       <div className="mx-auto max-w-[1400px] overflow-hidden rounded-[2.5rem] bg-ink px-8 py-16 sm:px-14 lg:px-16 lg:py-20 xl:px-24">
         <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] xl:gap-20">
-          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[2rem] xl:max-w-md">
+          <div className="relative mx-auto aspect-[1024/559] w-full max-w-md overflow-hidden rounded-[2rem] xl:max-w-lg">
             <Image
-              src="https://images.unsplash.com/photo-1709294728779-6be509d45255?auto=format&fit=crop&w=560&h=560&q=80"
-              alt="Florist arranging fresh blooms in the Candy More Floral studio"
+              src="/images/IMG_2129.JPG"
+              alt="A Candy & More gift box of truffles, garden roses and chocolate bars being arranged"
               fill
-              sizes="(min-width: 1024px) 400px, 80vw"
+              sizes="(min-width: 1024px) 460px, 90vw"
               className="object-cover"
             />
             <div className="absolute bottom-4 right-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg">

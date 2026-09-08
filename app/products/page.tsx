@@ -20,7 +20,7 @@ import {
 } from "@phosphor-icons/react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { PRODUCTS, Product } from "../data/products";
+import { PRODUCTS, Product, imgSrc } from "../data/products";
 import { LollipopIcon, BonbonIcon } from "../components/CandyDecor";
 import { ProductDetailModal } from "../components/ProductDetailModal";
 import { useQuote } from "../components/QuoteModal";
@@ -299,7 +299,7 @@ function ProductsCatalog() {
                         </button>
 
                         <Image
-                          src={`https://images.unsplash.com/photo-${product.photo}?auto=format&fit=crop&w=640&h=480&q=80`}
+                          src={imgSrc(product.photo, 640, 480)}
                           alt={product.name}
                           fill
                           sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

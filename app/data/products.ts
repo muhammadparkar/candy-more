@@ -1,14 +1,26 @@
+/**
+ * Resolve a product `photo` / `additionalPhotos` entry to a real src.
+ * Local files start with "/" and are returned as-is; everything else is
+ * treated as an Unsplash photo id.
+ */
+export function imgSrc(photo: string, w = 640, h = 480): string {
+  if (photo.startsWith("/")) return photo;
+  return `https://images.unsplash.com/photo-${photo}?auto=format&fit=crop&w=${w}&h=${h}&q=80`;
+}
+
 export interface Product {
   id: string;
   name: string;
   category: string;
-  categorySlug: "chocolates" | "flowers" | "gift-boxes" | "hampers";
+  categorySlug: "chocolates" | "flowers" | "plants" | "gift-boxes" | "hampers";
   price: number;
   originalPrice?: number;
   badge?: "Bestseller" | "New" | "Staff Pick" | "Limited Edition" | "Award Winner" | null;
   rating: number;
   reviewsCount: number;
   photo: string;
+  /** How the card image should fit its box. Default "contain" (show whole image). */
+  imageFit?: "cover" | "contain";
   additionalPhotos?: string[];
   description: string;
   details: string[];
@@ -305,5 +317,133 @@ export const PRODUCTS: Product[] = [
     notes: "A gift where the bag becomes a favorite everyday carry long after the flowers bloom.",
     dietaryOrType: ["Reusable Tote", "Gift-Ready", "Limited Edition"],
     delivery: "Same-day delivery available"
+  },
+  {
+    id: "red-rose-heart-stand-bouquet",
+    name: "Red Rose Heart Shaped Stand Bouquet",
+    category: "Fresh Flowers",
+    categorySlug: "flowers",
+    price: 0,
+    badge: "Bestseller",
+    rating: 5.0,
+    reviewsCount: 0,
+    photo: "/images/IMG_2108.JPG",
+    description: "A statement declaration of love: dozens of long-stemmed red roses hand-built into a full heart form on a self-standing stem base, collared with fresh foliage and finished with a signature Candy More Flowers ribbon.",
+    details: [
+      "Heart-form arrangement of premium long-stem red roses",
+      "Self-supporting bound-stem base — no vase needed",
+      "Fresh salal collar and signature branded satin ribbon",
+      "Ideal for anniversaries, proposals and Valentine's Day"
+    ],
+    notes: "Rose count and stand height scaled to your budget — request a quote for options.",
+    dietaryOrType: ["Fresh", "Gift-Ready", "Statement Piece"],
+    delivery: "Same-day delivery available"
+  },
+  {
+    id: "elegant-indoor-plant-gift",
+    name: "Elegant Indoor Plant Gift",
+    category: "Plants",
+    categorySlug: "plants",
+    price: 0,
+    badge: "Bestseller",
+    rating: 4.9,
+    reviewsCount: 0,
+    photo: "/images/IMG_2109.JPG",
+    description: "A lush peace lily in full bloom, gift-wrapped in blush tissue and satin ribbon with a black foil gift tag. A living gift that keeps giving long after cut flowers fade.",
+    details: [
+      "Healthy potted peace lily (Spathiphyllum) in bloom",
+      "Air-purifying, low-light tolerant, easy to care for",
+      "Blush gift wrap, satin bow and foil-stamped tag",
+      "Care card included"
+    ],
+    notes: "Plant size and decorative pot options available on request.",
+    dietaryOrType: ["Live Plant", "Air-Purifying", "Long-Lasting"],
+    delivery: "Same-day delivery available"
+  },
+  {
+    id: "luxury-mixed-bouquet",
+    name: "Luxury Mixed Bouquet",
+    category: "Fresh Flowers",
+    categorySlug: "flowers",
+    price: 0,
+    badge: "Bestseller",
+    rating: 4.9,
+    reviewsCount: 0,
+    photo: "/images/IMG_2110.JPG",
+    description: "An abundant hand-tied bouquet of red and pink roses, pink lilies, carnations, gypsophila and eucalyptus, wrapped in dusty-rose paper with a satin ribbon and gift tag.",
+    details: [
+      "Red & pink roses, Oriental lilies, carnations",
+      "Gypsophila, limonium and fresh eucalyptus",
+      "Premium dusty-rose wrap with satin ribbon and tag",
+      "Presented in a water-filled gift bag"
+    ],
+    notes: "Available in three sizes — request a quote to compare.",
+    dietaryOrType: ["Fresh", "Fragrant", "Gift-Ready"],
+    delivery: "Same-day delivery available"
+  },
+  {
+    id: "floral-indulgence",
+    name: "Floral Indulgence — Flowers plus Chocolates",
+    category: "Chocolates + Flowers",
+    categorySlug: "gift-boxes",
+    price: 0,
+    badge: "Bestseller",
+    rating: 5.0,
+    reviewsCount: 0,
+    photo: "/images/IMG_2125.JPG",
+    imageFit: "cover",
+    description: "A pastel spring arrangement of ranunculus, roses, hydrangea and lilies paired with a keepsake box of assorted hand-decorated truffles and pralines.",
+    details: [
+      "Seasonal pastel arrangement — ranunculus, roses, hydrangea, lilies",
+      "Keepsake box of ~25 assorted truffles and pralines",
+      "Gold foil-embossed 'Floral Indulgence' lid",
+      "Presented on a wooden serving tray"
+    ],
+    notes: "Chocolate box size and flower palette customizable on request.",
+    dietaryOrType: ["Fresh", "Contains Dairy", "Gift-Ready"],
+    delivery: "Same-day delivery available"
+  },
+  {
+    id: "scented-surprises",
+    name: "Scented Surprises",
+    category: "Fresh Flowers",
+    categorySlug: "flowers",
+    price: 0,
+    badge: "Bestseller",
+    rating: 4.8,
+    reviewsCount: 0,
+    photo: "/images/IMG_2126.JPG",
+    imageFit: "cover",
+    description: "An all-white fragrant bouquet of gardenia, jasmine, freesia and Oriental lilies in a glass vase tied with an ivory ribbon — built to perfume a whole room.",
+    details: [
+      "Gardenia, jasmine, freesia and white Oriental lilies",
+      "Arranged in a clear glass gift vase",
+      "Ivory satin ribbon finish",
+      "Highly fragrant — a scent-led arrangement"
+    ],
+    notes: "Seasonal fragrant stems vary; request a quote for current selection.",
+    dietaryOrType: ["Fresh", "Highly Fragrant", "Vase Included"],
+    delivery: "Same-day delivery available"
+  },
+  {
+    id: "high-end-modern-tablescape",
+    name: "High End Modern Tablescape Arrangement",
+    category: "Home Decors & Special Events",
+    categorySlug: "hampers",
+    price: 0,
+    badge: "Bestseller",
+    rating: 5.0,
+    reviewsCount: 0,
+    photo: "/images/IMG_2127.JPG",
+    description: "A low, elongated luxury centerpiece of hydrangea, Oriental lilies, roses, stock and trailing eucalyptus, styled to run the length of a coffee or dining table for events and premium home styling.",
+    details: [
+      "Elongated low centerpiece — hydrangea, lilies, roses, stock",
+      "Trailing eucalyptus and seasonal greenery",
+      "Styled for dining / coffee tables and event settings",
+      "On-site styling and multiples available for events"
+    ],
+    notes: "Priced per running length and stem grade — request an event quote.",
+    dietaryOrType: ["Fresh", "Event Styling", "Made to Order"],
+    delivery: "Delivery & setup by arrangement"
   }
 ];

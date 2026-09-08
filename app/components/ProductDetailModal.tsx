@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { X, Check, Star, ShoppingBag } from "@phosphor-icons/react";
-import type { Product } from "../data/products";
+import { imgSrc, type Product } from "../data/products";
 import { useQuote } from "./QuoteModal";
 
 export function ProductDetailModal({
@@ -45,7 +45,7 @@ export function ProductDetailModal({
                 </span>
               )}
               <Image
-                src={`https://images.unsplash.com/photo-${activePhoto}?auto=format&fit=crop&w=800&h=800&q=80`}
+                src={imgSrc(activePhoto, 800, 800)}
                 alt={product.name}
                 fill
                 className="object-cover"
@@ -64,7 +64,7 @@ export function ProductDetailModal({
                   }`}
                 >
                   <Image
-                    src={`https://images.unsplash.com/photo-${product.photo}?auto=format&fit=crop&w=150&h=150&q=80`}
+                    src={imgSrc(product.photo, 150, 150)}
                     alt="Thumbnail"
                     fill
                     className="object-cover"
@@ -82,7 +82,7 @@ export function ProductDetailModal({
                     }`}
                   >
                     <Image
-                      src={`https://images.unsplash.com/photo-${photoId}?auto=format&fit=crop&w=150&h=150&q=80`}
+                      src={imgSrc(photoId, 150, 150)}
                       alt="Thumbnail"
                       fill
                       className="object-cover"
