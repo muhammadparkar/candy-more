@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { X, Check, Star, ShoppingBag } from "@phosphor-icons/react";
+import { X, Check, Star, ShoppingBag, Truck, Tag } from "@phosphor-icons/react";
 import { imgSrc, type Product } from "../data/products";
 import { useQuote } from "./QuoteModal";
 
@@ -125,6 +125,23 @@ export function ProductDetailModal({
               </div>
 
               <p className="mt-3 text-xs italic text-ink-soft/80">{product.notes}</p>
+
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {product.dietaryOrType.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1 rounded-full bg-mint/30 px-2.5 py-1 text-[11px] font-medium text-ink"
+                  >
+                    <Tag weight="fill" className="h-3 w-3 text-ink-soft" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-3 flex items-center gap-1.5 text-xs font-medium text-ink-soft">
+                <Truck weight="bold" className="h-4 w-4 text-pink" />
+                <span>{product.delivery}</span>
+              </div>
 
               <div className="mt-4">
                 <label className="text-xs font-semibold uppercase tracking-wider text-ink-soft">

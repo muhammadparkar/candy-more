@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, Suspense } from "react";
+import { useState, useMemo, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +16,8 @@ import {
   Gift,
   ArrowRight,
   Heart,
+  Check,
+  CaretDown,
 } from "@phosphor-icons/react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -40,8 +42,26 @@ function ProductsCatalog() {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"featured" | "rating">("featured");
+  const [sortMenuOpen, setSortMenuOpen] = useState(false);
+  const sortMenuRef = useRef<HTMLDivElement>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (!sortMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (sortMenuRef.current && !sortMenuRef.current.contains(e.target as Node)) {
+        setSortMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [sortMenuOpen]);
+
+  const SORT_OPTIONS: { value: "featured" | "rating"; label: string }[] = [
+    { value: "featured", label: "Featured Curations" },
+    { value: "rating", label: "Highest Rated" },
+  ];
 
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -138,19 +158,57 @@ function ProductsCatalog() {
               </div>
 
               <div className="flex items-center gap-3 self-end sm:self-auto">
-                <div className="flex items-center gap-2 rounded-full border border-ink/10 bg-white px-4 py-2 text-xs font-semibold text-ink shadow-sm">
-                  <SlidersHorizontal weight="bold" className="h-3.5 w-3.5 text-pink" />
-                  <span>Sort by:</span>
-                  <select
-                    value={sortBy}
-                    onChange={(e) =>
-                      setSortBy(e.target.value as "featured" | "rating")
-                    }
-                    className="bg-transparent font-medium text-ink focus:outline-none cursor-pointer"
+                <div className="relative" ref={sortMenuRef}>
+                  <button
+                    type="button"
+                    onClick={() => setSortMenuOpen((prev) => !prev)}
+                    aria-haspopup="listbox"
+                    aria-expanded={sortMenuOpen}
+                    className="flex cursor-pointer items-center gap-2 rounded-full border border-ink/10 bg-white px-4 py-2 text-xs font-semibold text-ink shadow-sm transition-colors hover:border-pink"
                   >
-                    <option value="featured">Featured Curations</option>
-                    <option value="rating">Highest Rated</option>
-                  </select>
+                    <SlidersHorizontal weight="bold" className="h-3.5 w-3.5 text-pink" />
+                    <span className="text-ink-soft">Sort by:</span>
+                    <span>{SORT_OPTIONS.find((o) => o.value === sortBy)?.label}</span>
+                    <CaretDown
+                      weight="bold"
+                      className={`h-3 w-3 text-ink-soft transition-transform duration-150 ${
+                        sortMenuOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  <div
+                    role="listbox"
+                    className={`absolute right-0 top-full z-20 mt-2 w-52 overflow-hidden rounded-2xl border border-ink/10 bg-white p-1.5 shadow-[0_20px_40px_-15px_rgba(28,58,69,0.35)] transition-[opacity,transform] duration-150 ease-out origin-top-right ${
+                      sortMenuOpen
+                        ? "translate-y-0 opacity-100 scale-100 pointer-events-auto"
+                        : "-translate-y-1 opacity-0 scale-95 pointer-events-none"
+                    }`}
+                  >
+                    {SORT_OPTIONS.map((option) => {
+                      const active = sortBy === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          role="option"
+                          aria-selected={active}
+                          onClick={() => {
+                            setSortBy(option.value);
+                            setSortMenuOpen(false);
+                          }}
+                          className={`flex w-full cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 text-left text-xs font-medium transition-colors ${
+                            active
+                              ? "bg-pink/10 text-pink font-semibold"
+                              : "text-ink hover:bg-cream"
+                          }`}
+                        >
+                          <span>{option.label}</span>
+                          {active && <Check weight="bold" className="h-3.5 w-3.5" />}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
