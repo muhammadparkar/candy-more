@@ -11,7 +11,6 @@ import {
   ShoppingBag,
   Eye,
   X,
-  Check,
   Truck,
   Sparkle,
   Gift,
@@ -33,15 +32,6 @@ const CATEGORIES = [
   { id: "hampers", label: "Home Decors & Special Events" },
 ];
 
-const DIETARY_FILTERS = [
-  "Gluten-Free",
-  "Vegan",
-  "Vegetarian",
-  "Gift-Ready",
-  "Fragrant",
-  "Farm-Direct",
-];
-
 function ProductsCatalog() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "all";
@@ -50,19 +40,12 @@ function ProductsCatalog() {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"featured" | "rating">("featured");
-  const [activeDietaryFilters, setActiveDietaryFilters] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
     setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const toggleDietaryFilter = (tag: string) => {
-    setActiveDietaryFilters((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
   };
 
   const openProductModal = (product: Product) => setSelectedProduct(product);
@@ -83,21 +66,12 @@ function ProductsCatalog() {
           return false;
         }
       }
-      // Dietary / Feature tags
-      if (activeDietaryFilters.length > 0) {
-        const hasAllFilters = activeDietaryFilters.every((tag) =>
-          item.dietaryOrType.includes(tag)
-        );
-        if (!hasAllFilters) {
-          return false;
-        }
-      }
       return true;
     }).sort((a, b) => {
       if (sortBy === "rating") return b.rating - a.rating;
       return 0; // "featured" maintains default curated order
     });
-  }, [selectedCategory, searchQuery, activeDietaryFilters, sortBy]);
+  }, [selectedCategory, searchQuery, sortBy]);
 
   return (
     <div className="min-h-screen flex flex-col bg-cream text-ink">
@@ -202,39 +176,6 @@ function ProductsCatalog() {
               })}
             </div>
 
-            {/* Dietary & Feature Filter Tags */}
-            <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-ink-soft/70 mr-1">
-                Filter:
-              </span>
-              {DIETARY_FILTERS.map((tag) => {
-                const active = activeDietaryFilters.includes(tag);
-                return (
-                  <button
-                    key={tag}
-                    type="button"
-                    onClick={() => toggleDietaryFilter(tag)}
-                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition-all duration-150 cursor-pointer ${
-                      active
-                        ? "bg-pink text-white shadow-sm"
-                        : "bg-white border border-ink/10 text-ink-soft hover:bg-pink-light/30"
-                    }`}
-                  >
-                    {active && <Check weight="bold" className="h-3 w-3" />}
-                    {tag}
-                  </button>
-                );
-              })}
-              {activeDietaryFilters.length > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setActiveDietaryFilters([])}
-                  className="text-xs text-pink underline ml-2 font-medium cursor-pointer"
-                >
-                  Clear all
-                </button>
-              )}
-            </div>
           </div>
 
           {/* Product Count & Results */}
@@ -261,7 +202,6 @@ function ProductsCatalog() {
                 onClick={() => {
                   setSelectedCategory("all");
                   setSearchQuery("");
-                  setActiveDietaryFilters([]);
                 }}
                 className="mt-5 inline-flex items-center justify-center rounded-full bg-pink px-6 py-2.5 text-xs font-semibold text-white shadow-md hover:scale-105 transition-transform"
               >

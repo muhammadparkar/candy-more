@@ -8,9 +8,8 @@ import { Logo } from "./Logo";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Products", href: "/products" },
   { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Products", href: "/products" },
 ];
 
 export function Navbar() {
@@ -31,7 +30,11 @@ export function Navbar() {
           <Logo />
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-1 lg:gap-2 md:flex" aria-label="Primary">
+          <nav
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:gap-2 md:flex"
+            aria-label="Primary"
+          >
+
             {navLinks.map((link) => {
               const active = isActive(link.href);
               return (
