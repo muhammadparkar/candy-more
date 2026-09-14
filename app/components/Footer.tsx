@@ -14,15 +14,6 @@ const columns = [
     ],
   },
   {
-    title: "Company",
-    links: [
-      { label: "Our Story", href: "/about" },
-      { label: "Our Philosophy", href: "/about#philosophy" },
-      { label: "Master Artisans", href: "/about#team" },
-      { label: "Sustainability", href: "/about#sustainability" },
-    ],
-  },
-  {
     title: "Help & Support",
     links: [
       { label: "Contact Concierge", href: "/contact" },
@@ -64,7 +55,7 @@ export function Footer() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8">
             {columns.map((col) => (
               <div key={col.title}>
                 <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/50">
