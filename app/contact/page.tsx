@@ -182,6 +182,15 @@ export default function ContactPage() {
               <p className="mt-4 text-base leading-relaxed text-ink-soft sm:text-lg">
                 Have a question about an active delivery, planning a bespoke event floral bar, or ordering 100+ corporate gift boxes? Our team is here to assist.
               </p>
+
+              <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] lg:hidden">
+                <Image
+                  src="/images/contact-hero.jpg"
+                  alt="Candy More Floral florist arranging a chocolate and rose bouquet"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>

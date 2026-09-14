@@ -116,6 +116,15 @@ function ProductsCatalog() {
               <p className="mt-4 text-base leading-relaxed text-ink-soft sm:text-lg">
                 Explore our full catalog of fresh flowers, live plants, artisan chocolates, and decor for weddings and special events.
               </p>
+
+              <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] lg:hidden">
+                <Image
+                  src="/images/products-hero.jpg"
+                  alt="Candy More Floral gift boxes with truffles and preserved roses"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>

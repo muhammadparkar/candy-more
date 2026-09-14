@@ -104,6 +104,15 @@ export default function AboutPage() {
                   Visit our Ateliers
                 </Link>
               </div>
+
+              <div className="relative mt-8 aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] lg:hidden">
+                <Image
+                  src="/images/about-story.jpg"
+                  alt="Candy More Floral gift box with flowers and chocolates"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
