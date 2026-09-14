@@ -21,7 +21,6 @@ import {
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { PRODUCTS, Product, imgSrc } from "../data/products";
-import { LollipopIcon, BonbonIcon } from "../components/CandyDecor";
 import { ProductDetailModal } from "../components/ProductDetailModal";
 import { useQuote } from "../components/QuoteModal";
 
@@ -100,17 +99,17 @@ function ProductsCatalog() {
       <section className="relative overflow-hidden px-4 pb-12 pt-10 sm:px-6 lg:px-10 xl:px-16">
         <div className="mx-auto max-w-[1400px]">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-pink-light/40 via-yellow-light/50 to-mint/30 border border-ink/5 p-8 sm:p-12 lg:p-16">
-            {/* Playful Floating Candy Elements */}
-            <LollipopIcon
-              className="animate-candy-float absolute right-8 top-6 h-16 w-16 opacity-70 hidden sm:block"
-              style={{ "--float-rot": "-12deg" } as React.CSSProperties}
-            />
-            <BonbonIcon
-              className="animate-candy-float absolute right-32 bottom-6 h-12 w-14 opacity-60 hidden md:block"
-              style={{ animationDelay: "1.5s", "--float-rot": "10deg" } as React.CSSProperties}
-            />
+            <div className="absolute inset-y-0 right-0 hidden w-[55%] lg:block [mask-image:linear-gradient(to_right,transparent,black_30%)]">
+              <Image
+                src="/images/products-hero.jpg"
+                alt="Candy More Floral gift boxes with truffles and preserved roses"
+                fill
+                priority
+                className="object-cover"
+              />
+            </div>
 
-            <div className="relative z-10 max-w-2xl">
+            <div className="relative z-10 max-w-2xl lg:max-w-xl">
               <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
                 The Confection & Floral Collection
               </h1>

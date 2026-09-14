@@ -18,7 +18,6 @@ import {
 } from "@phosphor-icons/react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { LollipopIcon, BonbonIcon } from "../components/CandyDecor";
 import { CustomDatePicker } from "../components/CustomDatePicker";
 
 const INQUIRY_TYPES = [
@@ -32,7 +31,7 @@ const INQUIRY_TYPES = [
 const FAQS = [
   {
     q: "How does same-day delivery work?",
-    a: "Orders placed before 2:00 PM local time Monday through Saturday are eligible for same-day hand delivery within our 9 metropolitan service areas. Our temperature-controlled couriers hand-deliver directly to your recipient's doorstep.",
+    a: "Orders placed before 2:00 PM local time, any day of the week, are eligible for same-day hand delivery within our 9 metropolitan service areas. Our temperature-controlled couriers hand-deliver directly to your recipient's doorstep.",
   },
   {
     q: "How do you protect chocolates from heat during transit?",
@@ -166,16 +165,17 @@ export default function ContactPage() {
       <section className="relative overflow-hidden px-4 pb-12 pt-10 sm:px-6 lg:px-10 xl:px-16">
         <div className="mx-auto max-w-[1400px]">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-mint/30 via-pink-light/40 to-yellow-light/50 border border-ink/5 p-8 sm:p-12 lg:p-16">
-            <LollipopIcon
-              className="animate-candy-float absolute right-10 top-6 h-16 w-16 opacity-70 hidden sm:block"
-              style={{ "--float-rot": "14deg" } as React.CSSProperties}
-            />
-            <BonbonIcon
-              className="animate-candy-float absolute right-32 bottom-6 h-12 w-14 opacity-60 hidden md:block"
-              style={{ animationDelay: "1.2s", "--float-rot": "-8deg" } as React.CSSProperties}
-            />
+            <div className="absolute inset-y-0 right-0 hidden w-[55%] lg:block [mask-image:linear-gradient(to_right,transparent,black_30%)]">
+              <Image
+                src="/images/contact-hero.jpg"
+                alt="Candy More Floral florist arranging a chocolate and rose bouquet"
+                fill
+                priority
+                className="object-cover"
+              />
+            </div>
 
-            <div className="relative z-10 max-w-2xl">
+            <div className="relative z-10 max-w-2xl lg:max-w-xl">
               <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
                 Let&apos;s make something sweet together.
               </h1>
@@ -466,17 +466,9 @@ export default function ContactPage() {
                   Same-Day Cutoff Timings
                 </div>
                 <div className="mt-3 space-y-2 text-xs text-ink-soft">
-                  <div className="flex items-center justify-between border-b border-ink/5 pb-2">
-                    <span className="font-semibold text-ink">Mon – Fri:</span>
-                    <span>Order by 2:00 PM local time</span>
-                  </div>
-                  <div className="flex items-center justify-between border-b border-ink/5 pb-2">
-                    <span className="font-semibold text-ink">Saturday:</span>
-                    <span>Order by 12:30 PM local time</span>
-                  </div>
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-ink">Sunday:</span>
-                    <span>Pre-scheduled & event orders</span>
+                    <span className="font-semibold text-ink">Monday – Sunday:</span>
+                    <span>Order by 2:00 PM local time</span>
                   </div>
                 </div>
                 <div className="mt-4 flex items-center gap-2 rounded-2xl bg-pink-light/30 p-3 text-xs text-ink">

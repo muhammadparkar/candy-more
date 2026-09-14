@@ -11,7 +11,6 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { LollipopIcon, GummyDropIcon } from "../components/CandyDecor";
 import { DropletIcon } from "../components/icons";
 
 export const metadata = {
@@ -71,17 +70,17 @@ export default function AboutPage() {
       <section className="relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 lg:px-10 xl:px-16">
         <div className="mx-auto max-w-[1400px]">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-yellow-light/60 via-pink-light/30 to-mint/40 border border-ink/5 p-8 sm:p-14 lg:p-20">
-            {/* Animated Decor */}
-            <LollipopIcon
-              className="animate-candy-float absolute right-12 top-10 h-16 w-16 opacity-70 hidden md:block"
-              style={{ "--float-rot": "-10deg" } as React.CSSProperties}
-            />
-            <GummyDropIcon
-              className="animate-candy-float absolute right-40 bottom-10 h-12 w-12 opacity-60 hidden lg:block"
-              style={{ animationDelay: "1.8s", "--float-rot": "8deg" } as React.CSSProperties}
-            />
+            <div className="absolute inset-y-0 right-0 hidden w-[55%] lg:block [mask-image:linear-gradient(to_right,transparent,black_30%)]">
+              <Image
+                src="/images/about-story.jpg"
+                alt="Candy More Floral gift box with flowers and chocolates"
+                fill
+                priority
+                className="object-cover"
+              />
+            </div>
 
-            <div className="relative z-10 max-w-3xl">
+            <div className="relative z-10 max-w-3xl lg:max-w-xl">
               <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl leading-[1.1]">
                 Sweetness, arranged like art.
               </h1>
