@@ -167,7 +167,7 @@ export function ProductDetailModal({
 
               <div className="mt-4">
                 <label className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
-                  Wax-Sealed Card Message (Optional):
+                  Personalised Card Message:
                 </label>
                 <input
                   type="text"

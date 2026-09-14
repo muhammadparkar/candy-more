@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Plant,
-  Cookie,
   Package,
   Handshake,
   ArrowRight,
@@ -23,106 +22,43 @@ export const metadata = {
 
 const PILLARS = [
   {
-    icon: Cookie,
-    title: "Small-Batch Confectionery",
-    desc: "We hand-temper single-origin cacao from Madagascar and Ecuador, infusing fresh wild fruit purées, roasted nuts, and botanical essences without artificial colors or preservatives.",
+    icon: Plant,
+    title: "Flowers, Plants & Chocolates",
+    desc: "From fresh-cut bouquets and indoor plants to artisan chocolates and gift boxes, every piece is sourced and arranged with care for the occasion it's meant for.",
     bg: "bg-pink-light/40",
   },
   {
-    icon: Plant,
-    title: "Farm-Direct Living Blooms",
-    desc: "Our flowers never sit in warehouse cold-storage for weeks. Stems are harvested by partner growers and arranged fresh the morning of dispatch for maximum vase life.",
+    icon: Package,
+    title: "Same-Day Delivery",
+    desc: "Order in the morning, arrive in the evening. Our team packs and dispatches every gift the same day so your gesture lands exactly when it matters.",
     bg: "bg-mint/40",
   },
   {
-    icon: Package,
-    title: "Avant-Garde Keepsake Packaging",
-    desc: "We design our custom magnetic keepsake boxes to live on as jewelry cases or vanity trays. Every parcel is finished with silk ribbons and hand-pressed wax seals.",
+    icon: Handshake,
+    title: "Weddings & Special Events",
+    desc: "From engagement decor to wedding stages and majlis styling, we plan and set up full floral installations for weddings, Eid, and corporate events.",
     bg: "bg-yellow-light/60",
   },
   {
     icon: GlobeHemisphereWest,
-    title: "100% Plastic-Free & Fair-Trade",
-    desc: "All wrapping is biodegradable and compostable. We pay a 25% premium above Fair-Trade minimums directly to cacao farming cooperatives and local flower growers.",
+    title: "Custom Gifting for Every Occasion",
+    desc: "Birthdays, anniversaries, corporate thank-yous or festive celebrations. Every order can be customized with your choice of ribbon, card message, and packaging.",
     bg: "bg-violet/30",
-  },
-];
-
-const ARTISANS = [
-  {
-    name: "Élodie Vance",
-    role: "Head Chocolatier & Co-Founder",
-    origin: "Paris & New York",
-    specialty: "Ruby berry ganaches & delicate tempered praline wafers",
-    quote: "Chocolate should surprise you—both in texture and in emotional memory.",
-    photo: "1582794543139-8ac9cb0f7b11",
-  },
-  {
-    name: "Mateo Rivera",
-    role: "Master Botanical Stylist",
-    origin: "Bogotá & Los Angeles",
-    specialty: "Asymmetrical garden rose arrangements & wild cosmos",
-    quote: "Flowers have a natural rhythm; our job is to frame their untamed elegance.",
-    photo: "1709294728779-6be509d45255",
-  },
-  {
-    name: "Chloe Chen",
-    role: "Botanical Scent & Flavor Sommelier",
-    origin: "Taipei & San Francisco",
-    specialty: "Jasmine tea infusions & organic wildflower honeycombs",
-    quote: "The aroma of fresh lavender and dark cacao creates an instant sense of calm.",
-    photo: "1741803099750-e4102ab379b1",
-  },
-  {
-    name: "Soren Lindqvist",
-    role: "Creative & Packaging Director",
-    origin: "Copenhagen",
-    specialty: "Sculptural unboxing architecture & sustainable papercraft",
-    quote: "The moment you untie the ribbon is the start of the celebration.",
-    photo: "1559648285-851dd3a04a02",
-  },
-];
-
-const TIMELINE = [
-  {
-    year: "2014",
-    title: "The Weekend Pop-up Stall",
-    desc: "Élodie and Mateo set up a single wooden table at a neighborhood farmers market, selling 30 boxes of fresh garden roses alongside handmade raspberry chocolates.",
-  },
-  {
-    year: "2017",
-    title: "Our Soho Atelier Opens",
-    desc: "We opened our first dedicated flower studio and chocolate kitchen in downtown NYC, introducing same-day custom gift delivery across Manhattan and Brooklyn.",
-  },
-  {
-    year: "2020",
-    title: "Cold-Courier Logistics",
-    desc: "Engineered proprietary temperature-shielded vans to guarantee that artisan chocolate never melts and garden blooms stay dew-fresh regardless of summer heat.",
-  },
-  {
-    year: "2023",
-    title: "Zero Single-Use Plastic",
-    desc: "Completely eliminated plastic floral foam and cellophane wraps, transitioning 100% of our packaging to FSC-certified paper, compostable hydration wraps, and silk ribbons.",
-  },
-  {
-    year: "Today",
-    title: "Serving 9 Cities Daily",
-    desc: "A team of over 40 florists, pastry chefs, and artists crafting 120+ unique arrangements daily for birthdays, weddings, anniversaries, and spontaneous joy.",
   },
 ];
 
 const PRESS = [
   {
-    quote: "Candy More Floral has reinvented the modern luxury gift box into an art form.",
-    publication: "Vogue Living",
+    quote: "Ordered the rose heart arrangement for our anniversary and it looked even better in person than the photos.",
+    publication: "Fatima Al-Sayed",
   },
   {
-    quote: "The single-origin chocolates taste as mesmerizing as the blooms look.",
-    publication: "Bon Appétit",
+    quote: "The chocolate strawberries were a huge hit at my daughter's baby shower. Fresh, beautifully packed, delivered right on time.",
+    publication: "Noora Hassan",
   },
   {
-    quote: "The bubblegum aesthetic and impeccable botanical craft is a breath of fresh air.",
-    publication: "Architectural Digest",
+    quote: "Booked them for our wedding decor and the team handled everything, from the floral arch to the table settings.",
+    publication: "Yousef Al-Kaabi",
   },
 ];
 
@@ -146,18 +82,7 @@ export default function AboutPage() {
             />
 
             <div className="relative z-10 max-w-3xl">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold tracking-wide text-ink-soft shadow-sm">
-                <Image
-                  src="/logo.png"
-                  alt="Candy & More"
-                  width={30}
-                  height={20}
-                  className="h-4 w-auto object-contain"
-                />
-                Our Story & Botanical Philosophy
-              </div>
-
-              <h1 className="mt-6 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl leading-[1.1]">
+              <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl leading-[1.1]">
                 Sweetness, arranged like art.
               </h1>
 
@@ -208,7 +133,7 @@ export default function AboutPage() {
                 The Origins
               </span>
               <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-ink">
-                Where botanical sculpture meets artisan pastry.
+Where flowers, plants and chocolates come together.
               </h2>
               <p className="text-sm sm:text-base leading-relaxed text-ink-soft">
                 Most gift services treat flowers as an afterthought and chocolates as generic mass-produced candy. We set out to change that standard completely.
@@ -247,10 +172,10 @@ export default function AboutPage() {
               Our Principles
             </span>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-ink">
-              Crafted without compromises.
+              What we bring to every gift.
             </h2>
             <p className="mt-3 text-sm sm:text-base text-ink-soft">
-              Every detail is engineered to make unboxing feel like opening a small piece of contemporary art.
+              From everyday bouquets to full event styling, here's what you can count on with every order.
             </p>
           </div>
 
@@ -280,107 +205,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Meet The Artisans */}
-      <section id="team" className="px-4 py-16 sm:px-6 lg:px-10 xl:px-16 bg-white border-y border-ink/5">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-pink">
-              The Makers
-            </span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-ink">
-              Meet our master florists & chocolatiers.
-            </h2>
-            <p className="mt-3 text-sm sm:text-base text-ink-soft">
-              Passionate creators who bring precision, sensory experimentation, and genuine love to every parcel.
-            </p>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {ARTISANS.map((artisan) => (
-              <div
-                key={artisan.name}
-                className="group flex flex-col justify-between rounded-3xl border border-ink/5 bg-cream/50 p-5 transition-all hover:bg-cream hover:shadow-md"
-              >
-                <div>
-                  <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-cream">
-                    <Image
-                      src={`https://images.unsplash.com/photo-${artisan.photo}?auto=format&fit=crop&w=500&h=500&q=80`}
-                      alt={artisan.name}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                  <h3 className="mt-4 font-display text-lg font-bold text-ink">
-                    {artisan.name}
-                  </h3>
-                  <p className="text-xs font-semibold text-pink">{artisan.role}</p>
-                  <p className="mt-0.5 text-[11px] text-ink-soft/70">{artisan.origin}</p>
-                  <div className="mt-3 border-t border-ink/5 pt-3">
-                    <p className="text-xs text-ink-soft">
-                      <span className="font-semibold text-ink">Specialty: </span>
-                      {artisan.specialty}
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-4 rounded-2xl bg-white p-3 border border-ink/5">
-                  <p className="text-[11px] italic text-ink-soft">
-                    &ldquo;{artisan.quote}&rdquo;
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline Section */}
-      <section className="px-4 py-20 sm:px-6 lg:px-10 xl:px-16">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="text-center max-w-xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-pink">
-              Our Journey
-            </span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-ink">
-              From market stall to flagship studios.
-            </h2>
-          </div>
-
-          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {TIMELINE.map((item, idx) => (
-              <div
-                key={item.year}
-                className="relative rounded-3xl border border-ink/5 bg-white p-6 shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <span className="inline-block rounded-full bg-pink-light/50 px-3 py-1 font-display text-xs font-bold text-ink">
-                    {item.year}
-                  </span>
-                  <h3 className="mt-4 font-display text-base font-bold text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-ink-soft">
-                    {item.desc}
-                  </p>
-                </div>
-                <div className="mt-6 flex items-center gap-1 text-[11px] font-semibold text-pink">
-                  <span>Step 0{idx + 1}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Press & Accolades */}
-      <section id="press" className="px-4 py-16 sm:px-6 lg:px-10 xl:px-16 bg-ink text-cream">
+      {/* Customer Testimonials */}
+      <section id="testimonials" className="px-4 py-16 sm:px-6 lg:px-10 xl:px-16 bg-ink text-cream">
         <div className="mx-auto max-w-[1400px]">
           <div className="text-center max-w-xl mx-auto">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold text-mint">
               <Medal weight="fill" className="h-3.5 w-3.5" />
-              Press & Industry Recognition
+              Customer Stories
             </div>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold text-cream">
-              Celebrated by the critics.
+              Loved by our customers.
             </h2>
           </div>
 
@@ -395,7 +229,7 @@ export default function AboutPage() {
                   &ldquo;{item.quote}&rdquo;
                 </p>
                 <div className="mt-6 pt-4 border-t border-cream/10">
-                  <p className="font-semibold text-sm uppercase tracking-widest text-mint">
+                  <p className="font-semibold text-sm text-mint">
                     {item.publication}
                   </p>
                 </div>

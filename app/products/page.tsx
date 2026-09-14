@@ -12,7 +12,6 @@ import {
   Eye,
   X,
   Truck,
-  Sparkle,
   Gift,
   ArrowRight,
   Heart,
@@ -112,15 +111,11 @@ function ProductsCatalog() {
             />
 
             <div className="relative z-10 max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold tracking-wide text-ink-soft shadow-sm">
-                <Sparkle weight="fill" className="h-3.5 w-3.5 text-pink" />
-                Hand-tied blooms & small-batch chocolate atelier
-              </div>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+              <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
                 The Confection & Floral Collection
               </h1>
               <p className="mt-4 text-base leading-relaxed text-ink-soft sm:text-lg">
-                Explore our full catalog of hand-painted truffles, fresh-cut seasonal stem bouquets, and sculptural gift boxes crafted to elevate every gesture.
+                Explore our full catalog of fresh flowers, live plants, artisan chocolates, and decor for weddings and special events.
               </p>
             </div>
           </div>
