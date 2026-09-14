@@ -89,23 +89,24 @@ export default function AboutPage() {
                 Candy More Floral was born from a simple obsession: why should extraordinary confectionery and breathtaking floristry live in separate worlds? We brought them under one roof to create moments of pure wonder.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-8 flex items-center gap-2 sm:gap-4">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-cream shadow-lg transition-transform hover:scale-105 active:scale-95"
+                  className="inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-ink px-4 py-3 text-xs font-semibold text-cream shadow-lg transition-transform hover:scale-105 active:scale-95 sm:flex-none sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm"
                 >
-                  Explore the Collection
-                  <ArrowRight weight="bold" className="h-4 w-4" />
+                  <span className="sm:hidden">Explore</span>
+                  <span className="hidden sm:inline">Explore the Collection</span>
+                  <ArrowRight weight="bold" className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/60 px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-pink hover:text-pink"
+                  className="inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-ink/15 bg-white/60 px-4 py-3 text-xs font-semibold text-ink transition-colors hover:border-pink hover:text-pink sm:flex-none sm:px-7 sm:py-3.5 sm:text-sm"
                 >
                   Visit our Ateliers
                 </Link>
               </div>
 
-              <div className="relative mt-8 aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] lg:hidden">
+              <div className="relative -mx-8 -mb-8 mt-8 aspect-[4/3] sm:-mx-14 sm:-mb-14 lg:hidden [mask-image:linear-gradient(to_bottom,transparent,black_30%)]">
                 <Image
                   src="/images/about-story.jpg"
                   alt="Candy More Floral gift box with flowers and chocolates"
@@ -122,7 +123,7 @@ export default function AboutPage() {
       <section className="px-4 py-12 sm:px-6 lg:px-10 xl:px-16">
         <div className="mx-auto max-w-[1400px]">
           <div className="grid items-center gap-12 lg:grid-cols-2 xl:gap-20">
-            <div className="relative">
+            <div className="relative hidden lg:block">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] shadow-[0_25px_50px_-20px_rgba(28,58,69,0.3)]">
                 <Image
                   src="https://images.unsplash.com/photo-1709294728779-6be509d45255?auto=format&fit=crop&w=900&h=675&q=80"
@@ -152,6 +153,15 @@ Where flowers, plants and chocolates come together.
               <p className="text-sm sm:text-base leading-relaxed text-ink-soft">
                 The result is a sensory experience where sight, scent, and taste harmonize into something unforgettable.
               </p>
+
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] shadow-[0_25px_50px_-20px_rgba(28,58,69,0.3)] lg:hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1709294728779-6be509d45255?auto=format&fit=crop&w=900&h=675&q=80"
+                  alt="Candy More floral master studio workshop"
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
               <div className="grid grid-cols-3 gap-4 pt-4 border-t border-ink/10">
                 <div>

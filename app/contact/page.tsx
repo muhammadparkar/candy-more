@@ -183,7 +183,7 @@ export default function ContactPage() {
                 Have a question about an active delivery, planning a bespoke event floral bar, or ordering 100+ corporate gift boxes? Our team is here to assist.
               </p>
 
-              <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] lg:hidden">
+              <div className="relative -mx-8 -mb-8 mt-6 aspect-[4/3] sm:-mx-12 sm:-mb-12 lg:hidden [mask-image:linear-gradient(to_bottom,transparent,black_30%)]">
                 <Image
                   src="/images/contact-hero.jpg"
                   alt="Candy More Floral florist arranging a chocolate and rose bouquet"
