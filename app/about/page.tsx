@@ -82,7 +82,7 @@ export default function AboutPage() {
 
             <div className="relative z-10 max-w-3xl lg:max-w-xl">
               <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl leading-[1.1]">
-                Sweetness, arranged like art.
+                The Fine Art of Gifting & Celebration
               </h1>
 
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink-soft max-w-2xl">

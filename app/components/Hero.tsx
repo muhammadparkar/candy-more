@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Sparkle, Truck } from "@phosphor-icons/react/dist/ssr";
+import { Truck } from "@phosphor-icons/react/dist/ssr";
 import { BonbonIcon, GummyDropIcon, LollipopIcon } from "./CandyDecor";
 
 export function Hero() {
@@ -8,12 +8,7 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pt-20 lg:px-10 xl:px-16">
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 lg:grid-cols-[1fr_0.9fr] xl:gap-20">
         <div className="relative z-10 lg:translate-x-6 xl:translate-x-10">
-          <div className="inline-flex items-center gap-2 rounded-full bg-yellow-light px-4 py-1.5 text-xs font-semibold tracking-wide text-ink-soft">
-            <Sparkle weight="fill" className="h-3.5 w-3.5 text-pink" />
-            Same-day delivery in select cities
-          </div>
-
-          <h1 className="mt-6 font-display text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] 2xl:text-[4.2rem]">
+          <h1 className="font-display text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] 2xl:text-[4.2rem]">
             Sweetness,
             <br />
             <span className="relative inline-block">
